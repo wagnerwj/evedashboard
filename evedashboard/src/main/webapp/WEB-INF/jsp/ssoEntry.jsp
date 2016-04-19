@@ -7,6 +7,6 @@
 <title>EVE SSO Testing</title>
 </head>
 <body>
-<img src="/teststuff1/resources/img/indexblack.png"/>
+<img src="/evedashboard/img/indexblack.png"/>
 </body>
 </html>
