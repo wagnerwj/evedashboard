@@ -12,26 +12,12 @@
 <title>EVE SSO Testing</title>
 </head>
 <body>
-<img src="/evedashboard/img/indexblack.png" onClick="submitToEve()"/>
+<img src="/evedashboard/img/indexblack.png" onClick="submitToEve('${eveUrl }' )"/>
 </body>
 
 <script type="text/javascript">
- function submitToEve(){
-	 alert("Hi There!");
-	 $.ajax({
-	    	type: "GET",
-	    	url: "/evedashboard/signIn",
-	    	dataType: 'html',
-	    	
-
-	    	success: function(html){
-	                 $("#container").html(html);
-	    	},
-
-	    	error: function(){
-	    	}
-	    });
-
+ function submitToEve(eveUrl){
+	 window.location = eveUrl;
  }
 
 </script>
