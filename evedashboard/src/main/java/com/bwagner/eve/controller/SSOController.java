@@ -1,5 +1,7 @@
 package com.bwagner.eve.controller;
 
+import java.text.MessageFormat;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
@@ -39,9 +41,15 @@ public class SSOController {
 	
 	@RequestMapping(value="/signIn", method = RequestMethod.GET)
 	public String redirectToEve(Model model){
+		String eveUrl = MessageFormat.format(authUrl,callbackUrl, eveClientId,"login");
 		
+		return "ssoEntry";
 	}
 	
+	@RequestMapping(value="authStep1", method = RequestMethod.GET)
+	public String authStep1(Model model){
+		return "ssoEntry";
+	}
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
 		return new PropertySourcesPlaceholderConfigurer();
