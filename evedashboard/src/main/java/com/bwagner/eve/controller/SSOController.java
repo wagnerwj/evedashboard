@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -21,6 +23,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bwagner.eve.utils.RestClientHelper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @Controller
 @PropertySource("classpath:instance.properties")
@@ -63,16 +69,28 @@ public class SSOController {
 		HttpPost postUrl = new HttpPost(tokenUrl);
 		ArrayList<BasicNameValuePair> postParameters= new ArrayList<BasicNameValuePair>();
 		String encodedAuthString = Base64.getEncoder().encodeToString((eveClientId+":"+eveSecretId).getBytes());
-		postParameters.add(new BasicNameValuePair("Authorization","Basic "+encodedAuthString));
+		postUrl.setHeader("Authorization", "Basic "+encodedAuthString);
 		postParameters.add(new BasicNameValuePair("grant_type", "authorization_code"));
 		postParameters.add(new BasicNameValuePair("code", code.trim()));
 		
 		try {
 			postUrl.setEntity(new UrlEncodedFormEntity(postParameters,"UTF-8"));	
 			HttpEntity entity = RestClientHelper.getRestResponse(postUrl).getEntity();
-			
+			String accessToken = null;
+			String tokenType=null;
 			String restResponse = RestClientHelper.getHttpEntityResponseString(entity);
-			int rhe=2;
+			Map<String, String> properties = new HashMap<String, String>();
+			try {
+			 
+			    ObjectMapper mapper = new ObjectMapper();
+			    properties = mapper.readValue(restResponse, new TypeReference<Map<String, String>>() {});
+			    accessToken = properties.get("access_token");
+			    tokenType = properties.get("token_type");
+			} catch (IOException e) {   
+			   
+			}
+			
+			System.out.println(restResponse);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
