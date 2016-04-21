@@ -9,8 +9,9 @@ import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.HttpClientBuilder;
+
 import org.apache.http.message.BasicNameValuePair;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -25,8 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bwagner.eve.utils.RestClientHelper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @Controller
 @PropertySource("classpath:instance.properties")
@@ -47,6 +46,9 @@ public class SSOController {
 	
 	@Value("${eve.tokenurl}")
 	private String tokenUrl;
+	
+	@Value("${eve.characterurl}")
+	private String characterUrl;
 	
 
 	
@@ -86,6 +88,17 @@ public class SSOController {
 			    properties = mapper.readValue(restResponse, new TypeReference<Map<String, String>>() {});
 			    accessToken = properties.get("access_token");
 			    tokenType = properties.get("token_type");
+			    
+			    if(accessToken!=null){
+			    	//get characters here
+			    	HttpGet getUrl = new HttpGet(characterUrl);
+			    	getUrl.setHeader("Authorization", "Bearer "+accessToken);
+			    	entity = RestClientHelper.getRestResponse(getUrl).getEntity();
+			    	restResponse = RestClientHelper.getHttpEntityResponseString(entity);
+			    	properties = mapper.readValue(restResponse, new TypeReference<Map<String, String>>() {});
+			    	model.addAttribute("CharacterName", properties.get("CharacterName"));
+			    	model.addAttribute("CharacterID", properties.get("CharacterID"));
+			    }
 			} catch (IOException e) {   
 			   
 			}
