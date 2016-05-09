@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 
 @Entity
@@ -15,16 +18,22 @@ public class EvePilot implements Serializable {
 	 */
 	private static final long serialVersionUID = -6080544559553494343L;
 
+	@Id
 	private long id;
 	
 
+	@Column
+	@ElementCollection(targetClass = EveAPI.class)
 	private List<EveAPI> apiKeys;
 	
-	//Mapped for better speed- probably not needed, but I like maps.
-	private Map<Long, EveCharacter> characterMap;
+	@Column
+	@ElementCollection(targetClass = EveCharacter.class)
+	private List<EveCharacter> characters;
 	
 	private String emailAddress;
 	
+	@Column
+	@ElementCollection(targetClass = MNDSServiceAccount.class)
 	private List<MNDSServiceAccount> accounts;
 	
 	
@@ -65,12 +74,12 @@ public class EvePilot implements Serializable {
 		this.apiKeys = apiKeys;
 	}
 
-	public Map<Long, EveCharacter> getCharacterMap() {
-		return characterMap;
+	public List<EveCharacter> getCharacters() {
+		return characters;
 	}
 
-	public void setCharacterMap(Map<Long, EveCharacter> characterMap) {
-		this.characterMap = characterMap;
+	public void setCharacters(List<EveCharacter> characters) {
+		this.characters = characters;
 	}
 
 	public String getEmailAddress() {

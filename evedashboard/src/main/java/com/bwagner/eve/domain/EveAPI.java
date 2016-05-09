@@ -3,6 +3,7 @@ package com.bwagner.eve.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class EveAPI implements Serializable {
@@ -14,6 +15,7 @@ public class EveAPI implements Serializable {
 	private static final long serialVersionUID = -3669527828596154615L;
 
 
+	@Id
 	public String getKey() {
 		return key;
 	}
