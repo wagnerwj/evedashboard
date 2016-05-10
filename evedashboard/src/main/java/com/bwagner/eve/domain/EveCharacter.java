@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
-@Entity
+
 public class EveCharacter implements Serializable {
 	
 	
@@ -15,8 +15,7 @@ public class EveCharacter implements Serializable {
 	 */
 	private static final long serialVersionUID = -3506111020219862151L;
 
-	//probably not a long, but WTf
-	@Id
+
 	private long id;
 	
 	public long getId() {

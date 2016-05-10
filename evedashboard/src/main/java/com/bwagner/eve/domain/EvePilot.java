@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
-@Entity
+
 public class EvePilot implements Serializable {
 
 	/**
@@ -18,28 +18,26 @@ public class EvePilot implements Serializable {
 	 */
 	private static final long serialVersionUID = -6080544559553494343L;
 
-	@Id
+
 	private long id;
 	
 
-	@Column
-	@ElementCollection(targetClass = EveAPI.class)
 	private List<EveAPI> apiKeys;
 	
-	@Column
-	@ElementCollection(targetClass = EveCharacter.class)
+
 	private List<EveCharacter> characters;
 	
 	private String emailAddress;
 	
-	@Column
-	@ElementCollection(targetClass = MNDSServiceAccount.class)
+
 	private List<MNDSServiceAccount> accounts;
 	
 	
 	private String salt;
 	
 	private String hashedPassword;
+	
+	private EveCharacter postingCharacter;
 	
 	
 	public String getSalt() {
@@ -96,6 +94,14 @@ public class EvePilot implements Serializable {
 
 	public void setAccounts(List<MNDSServiceAccount> accounts) {
 		this.accounts = accounts;
+	}
+
+	public EveCharacter getPostingCharacter() {
+		return postingCharacter;
+	}
+
+	public void setPostingCharacter(EveCharacter postingCharacter) {
+		this.postingCharacter = postingCharacter;
 	}
 
 }

@@ -15,10 +15,6 @@
         <property name="show_sql">false</property>
  
         <!-- Drop and re-create all database on startup -->
-        <property name="hibernate.hbm2ddl.auto">create-drop</property>
-		<mapping class="com.bwagner.eve.domain.EveAPI"/>
-	    <mapping class="com.bwagner.eve.domain.EveCharacter"/>
-	    <mapping class="com.bwagner.eve.domain.EvePilot"/>
-	    <mapping class="com.bwagner.eve.domain.MNDSServiceAccount"/>
+		<mapping resource="domainobjects.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>
