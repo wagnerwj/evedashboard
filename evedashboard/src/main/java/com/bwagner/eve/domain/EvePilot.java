@@ -1,6 +1,7 @@
 package com.bwagner.eve.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +38,9 @@ public class EvePilot implements Serializable {
 	
 	private String hashedPassword;
 	
-	private EveCharacter postingCharacter;
+
+	
+	
 	
 	
 	public String getSalt() {
@@ -65,6 +68,9 @@ public class EvePilot implements Serializable {
 	}
 
 	public List<EveAPI> getApiKeys() {
+		if(this.apiKeys == null){
+			this.apiKeys = new ArrayList<EveAPI>();
+		}
 		return apiKeys;
 	}
 
@@ -73,6 +79,9 @@ public class EvePilot implements Serializable {
 	}
 
 	public List<EveCharacter> getCharacters() {
+		if(this.characters == null){
+			this.characters = new ArrayList<EveCharacter>();
+		}
 		return characters;
 	}
 
@@ -89,6 +98,9 @@ public class EvePilot implements Serializable {
 	}
 
 	public List<MNDSServiceAccount> getAccounts() {
+		if(this.accounts == null){
+			this.accounts = new ArrayList<MNDSServiceAccount>();
+		}
 		return accounts;
 	}
 
@@ -96,12 +108,5 @@ public class EvePilot implements Serializable {
 		this.accounts = accounts;
 	}
 
-	public EveCharacter getPostingCharacter() {
-		return postingCharacter;
-	}
-
-	public void setPostingCharacter(EveCharacter postingCharacter) {
-		this.postingCharacter = postingCharacter;
-	}
 
 }
