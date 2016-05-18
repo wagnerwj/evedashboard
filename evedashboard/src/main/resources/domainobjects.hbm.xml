@@ -40,7 +40,7 @@
   	
   	<property name="emailAddress" column="email_address" type="string"/>
   	<property name="hashedPassword" column="hash" type="string"/>
-
+	<property name="salt" column="salt" type="string" />
     <list name="apiKeys" cascade="all">
          <key column="eve_pilot_id"/>
          <list-index column="idx"/>

@@ -15,6 +15,6 @@
         <property name="show_sql">false</property>
  
         <!-- Drop and re-create all database on startup -->
-		<mapping resource="domainobjects.hbm.xml"/>
+
 	</session-factory>
 </hibernate-configuration>
