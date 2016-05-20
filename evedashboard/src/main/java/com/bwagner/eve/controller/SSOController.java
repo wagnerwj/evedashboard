@@ -7,6 +7,8 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bwagner.eve.service.EveDashboardService;
 import com.bwagner.eve.utils.RestClientHelper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,6 +53,8 @@ public class SSOController {
 	@Value("${eve.characterurl}")
 	private String characterUrl;
 	
+	@Resource
+	private EveDashboardService dashboardService;
 
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
@@ -98,6 +103,7 @@ public class SSOController {
 			    	properties = mapper.readValue(restResponse, new TypeReference<Map<String, String>>() {});
 			    	model.addAttribute("CharacterName", properties.get("CharacterName"));
 			    	model.addAttribute("CharacterID", properties.get("CharacterID"));
+			    	//Here I have the character
 			    }
 			} catch (IOException e) {   
 			   

@@ -45,11 +45,11 @@
 <!--          <one-to-many class="com.bwagner.eve.domain.EveAPI"/> -->
 <!--       </list> -->
       
-        <list name="characters" cascade="all">
+        <set name="characters" cascade="save-update,delete">
          <key column="eve_pilot_id"/>
-         <list-index column="eve_character_id"/>
+        
          <one-to-many class="com.bwagner.eve.domain.EveCharacter"/>
-      </list>
+      </set>
       
 <!--       <list name="accounts" cascade="all"> -->
 <!--          <key column="eve_pilot_id"/> -->

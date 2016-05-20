@@ -14,7 +14,7 @@ import org.hibernate.criterion.Restrictions;
 import com.bwagner.eve.domain.EveCharacter;
 import com.bwagner.eve.domain.EvePilot;
 
-public class EvePilotDao  {
+public class EveDashboardDao  {
 
 	private Session currentSession;
 	
@@ -109,8 +109,10 @@ public class EvePilotDao  {
 		// TODO Auto-generated method stub
 		return (EvePilot) getCurrentSession().get(EvePilot.class, id);
 	}
+	
 
-	public void save(EvePilot entity) {
+
+	public void save(Object entity) {
 		 getCurrentSession().saveOrUpdate(entity);
 
 	}
@@ -123,6 +125,15 @@ public class EvePilotDao  {
 	public <S extends EvePilot> Iterable<S> save(Iterable<S> entity) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public EvePilot findByEveCharacterId(Long characterId){
+		EveCharacter eveCharacter = (EveCharacter) getCurrentSession().get(EveCharacter.class, characterId);
+		EvePilot pilot = null;
+		if(eveCharacter != null){
+			pilot = this.findByEveCharacter(eveCharacter);
+		}
+		return pilot;
 	}
 	
 	public EvePilot findByEveCharacter(EveCharacter character){

@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.bwagner.eve.dao.EvePilotDao;
+import com.bwagner.eve.dao.EveDashboardDao;
 import com.bwagner.eve.domain.EveAPI;
 import com.bwagner.eve.domain.EveCharacter;
 import com.bwagner.eve.domain.EvePilot;
@@ -28,16 +28,22 @@ public class TestStorage extends TestCase {
 //		session.getTransaction().commit();
 //		session.close();
 		
-		EvePilotDao dao = new EvePilotDao();
-		EveCharacter character1= new EveCharacter();
-		character1.setId(1002l);
-		character1.setName("Wakka Wakka Wakka 2");
+		EveDashboardDao dao = new EveDashboardDao();
+//		EveCharacter character1= new EveCharacter();
+//		character1.setId(1012l);
+//		character1.setName("Wakka Wakka Wakka 3");
 		dao.openCurrentSessionwithTransaction();
-		EvePilot pilot= dao.findByEmail("owatagoosiam@siam.com");
-		pilot.getCharacters().add(character1);
+		//dao.save(character1);
+//		EvePilot pilot= new EvePilot();
+//		pilot.setEmailAddress("owatagoosiam@siam.com");
+//		pilot.setSalt("WKIQDW@!@");
+//		pilot.getCharacters().add(character1);
 		
 		
-		dao.save(pilot);
+//		dao.save(pilot);
+		
+		EvePilot pilot = dao.findByEveCharacterId(1012l);
+		System.out.println(pilot.getEmailAddress());
 		dao.closeCurrentSessionwithTransaction();
 	}
 }

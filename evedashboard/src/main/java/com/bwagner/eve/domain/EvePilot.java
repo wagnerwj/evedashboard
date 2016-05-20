@@ -2,8 +2,10 @@ package com.bwagner.eve.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -23,15 +25,15 @@ public class EvePilot implements Serializable {
 	private long id;
 	
 
-	private List<EveAPI> apiKeys;
+	private Set<EveAPI> apiKeys;
 	
 
-	private List<EveCharacter> characters;
+	private Set<EveCharacter> characters;
 	
 	private String emailAddress;
 	
 
-	private List<MNDSServiceAccount> accounts;
+	private Set<MNDSServiceAccount> accounts;
 	
 	
 	private String salt;
@@ -67,25 +69,25 @@ public class EvePilot implements Serializable {
 		this.id = id;
 	}
 
-	public List<EveAPI> getApiKeys() {
+	public Set<EveAPI> getApiKeys() {
 		if(this.apiKeys == null){
-			this.apiKeys = new ArrayList<EveAPI>();
+			this.apiKeys = new HashSet<EveAPI>();
 		}
 		return apiKeys;
 	}
 
-	public void setApiKeys(List<EveAPI> apiKeys) {
+	public void setApiKeys(Set<EveAPI> apiKeys) {
 		this.apiKeys = apiKeys;
 	}
 
-	public List<EveCharacter> getCharacters() {
+	public Set<EveCharacter> getCharacters() {
 		if(this.characters == null){
-			this.characters = new ArrayList<EveCharacter>();
+			this.characters = new HashSet<EveCharacter>();
 		}
 		return characters;
 	}
 
-	public void setCharacters(List<EveCharacter> characters) {
+	public void setCharacters(Set<EveCharacter> characters) {
 		this.characters = characters;
 	}
 
@@ -97,14 +99,14 @@ public class EvePilot implements Serializable {
 		this.emailAddress = emailAddress;
 	}
 
-	public List<MNDSServiceAccount> getAccounts() {
+	public Set<MNDSServiceAccount> getAccounts() {
 		if(this.accounts == null){
-			this.accounts = new ArrayList<MNDSServiceAccount>();
+			this.accounts = new HashSet<MNDSServiceAccount>();
 		}
 		return accounts;
 	}
 
-	public void setAccounts(List<MNDSServiceAccount> accounts) {
+	public void setAccounts(Set<MNDSServiceAccount> accounts) {
 		this.accounts = accounts;
 	}
 
