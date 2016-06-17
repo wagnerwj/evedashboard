@@ -35,6 +35,7 @@ CREATE TABLE "evedashboard"."eve_character"(
    character_name varchar(80),
    avatar_url varchar(100),
    current_corp varchar(100),
+   current_corp_id BIGINT,
    eve_pilot_id BIGINT references "evedashboard"."eve_pilot"(eve_pilot_id)
    );
    

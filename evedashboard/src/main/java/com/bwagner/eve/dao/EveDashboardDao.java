@@ -50,6 +50,9 @@ public class EveDashboardDao  {
 	}
 	
 	public Session getCurrentSession() {
+		if(currentSession == null || !currentSession.isOpen()){
+			return openCurrentSessionwithTransaction();
+		}
 		return currentSession;
 	}
 
@@ -114,10 +117,12 @@ public class EveDashboardDao  {
 
 	public void save(Object entity) {
 		 getCurrentSession().saveOrUpdate(entity);
-
+		 getCurrentSession().flush();
+		 closeCurrentSessionwithTransaction();
 	}
 
 	public EvePilot findByEmail(String email){
+		getCurrentSession();
 		DetachedCriteria criteria = DetachedCriteria.forClass(EvePilot.class);
 		criteria.add(Restrictions.ilike("emailAddress", email));
 		return (EvePilot)criteria.getExecutableCriteria(getCurrentSession()).uniqueResult();

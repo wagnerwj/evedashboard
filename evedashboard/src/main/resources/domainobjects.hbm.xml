@@ -26,7 +26,7 @@
    <property name="name" column="character_name" type="string"/>
    <property name="avatarUrl" column="avatar_url" type="string"/>
    <property name="currentCorp" column="current_corp" type="string"/>
-   
+ 
   </class>
   
   <class name="com.bwagner.eve.domain.EvePilot" schema="evedashboard" table="eve_pilot">
@@ -39,17 +39,17 @@
   	<property name="emailAddress" column="email_address" type="string"/>
   	<property name="hashedPassword" column="hash" type="string"/>
 	<property name="salt" column="salt" type="string" />
-<!--     <list name="apiKeys" cascade="all"> -->
-<!--          <key column="eve_pilot_id"/> -->
-<!--          <list-index column="idx"/> -->
-<!--          <one-to-many class="com.bwagner.eve.domain.EveAPI"/> -->
-<!--       </list> -->
-      
-        <set name="characters" cascade="save-update,delete">
+    <bag name="apiKeys" cascade="save-update,delete">
          <key column="eve_pilot_id"/>
         
-         <one-to-many class="com.bwagner.eve.domain.EveCharacter"/>
-      </set>
+         <one-to-many class="com.bwagner.eve.domain.EveAPI"/>
+      </bag>
+      
+        <bag name="characters" cascade="save-update,delete">
+        	<key column="eve_pilot_id"/>
+
+       		<one-to-many class="com.bwagner.eve.domain.EveCharacter"/>
+      </bag>
       
 <!--       <list name="accounts" cascade="all"> -->
 <!--          <key column="eve_pilot_id"/> -->

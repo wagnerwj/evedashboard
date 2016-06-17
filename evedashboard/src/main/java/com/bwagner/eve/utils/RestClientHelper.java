@@ -12,6 +12,8 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+import com.bwagner.eve.domain.EveAPI;
+
 public class RestClientHelper {
 
 	
@@ -22,7 +24,9 @@ public class RestClientHelper {
 		return client.execute(request);
 	}
 	
-	
+	public static String returnAPIResult(EveAPI apiKey){
+		return null;
+	}
 
 	public static String getHttpEntityResponseString(HttpEntity entity){
 		String res = null;

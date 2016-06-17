@@ -56,5 +56,6 @@ public class EveCharacter implements Serializable {
 	private String avatarUrl;
 	
 	private String currentCorp;
-
+	
+	
 }

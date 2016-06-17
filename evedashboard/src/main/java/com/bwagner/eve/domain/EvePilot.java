@@ -25,15 +25,15 @@ public class EvePilot implements Serializable {
 	private long id;
 	
 
-	private Set<EveAPI> apiKeys;
+	private List<EveAPI> apiKeys;
 	
 
-	private Set<EveCharacter> characters;
+	private List<EveCharacter> characters;
 	
 	private String emailAddress;
 	
 
-	private Set<MNDSServiceAccount> accounts;
+	private List<MNDSServiceAccount> accounts;
 	
 	
 	private String salt;
@@ -69,25 +69,25 @@ public class EvePilot implements Serializable {
 		this.id = id;
 	}
 
-	public Set<EveAPI> getApiKeys() {
+	public List<EveAPI> getApiKeys() {
 		if(this.apiKeys == null){
-			this.apiKeys = new HashSet<EveAPI>();
+			this.apiKeys = new ArrayList<EveAPI>();
 		}
 		return apiKeys;
 	}
 
-	public void setApiKeys(Set<EveAPI> apiKeys) {
+	public void setApiKeys(List<EveAPI> apiKeys) {
 		this.apiKeys = apiKeys;
 	}
 
-	public Set<EveCharacter> getCharacters() {
+	public List<EveCharacter> getCharacters() {
 		if(this.characters == null){
-			this.characters = new HashSet<EveCharacter>();
+			this.characters = new ArrayList<EveCharacter>();
 		}
 		return characters;
 	}
 
-	public void setCharacters(Set<EveCharacter> characters) {
+	public void setCharacters(List<EveCharacter> characters) {
 		this.characters = characters;
 	}
 
@@ -99,14 +99,14 @@ public class EvePilot implements Serializable {
 		this.emailAddress = emailAddress;
 	}
 
-	public Set<MNDSServiceAccount> getAccounts() {
+	public List<MNDSServiceAccount> getAccounts() {
 		if(this.accounts == null){
-			this.accounts = new HashSet<MNDSServiceAccount>();
+			this.accounts = new ArrayList<MNDSServiceAccount>();
 		}
 		return accounts;
 	}
 
-	public void setAccounts(Set<MNDSServiceAccount> accounts) {
+	public void setAccounts(List<MNDSServiceAccount> accounts) {
 		this.accounts = accounts;
 	}
 
